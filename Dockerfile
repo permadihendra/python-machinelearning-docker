@@ -5,6 +5,8 @@ COPY . /app
 WORKDIR /app
 RUN apt-get update \
     && apt-get install -y python3 python3-pip \
+    && pip3 install ipython \
+    && pip3 install jedi \
     && pip3 install jupyter \
     && pip3 install pyexcel \
     && pip3 install openpyexcel \
@@ -18,6 +20,6 @@ RUN apt-get update \
     && pip3 install graphviz \
     && apt-get clean
 # COMMAND and ENTRYPOINT:
-CMD ["jupyter","notebook","--allow-root","--ip=0.0.0.0","--port=9000"]
+CMD ["jupyter","notebook","--allow-root","--ip=0.0.0.0","--port=9000","--NotebookApp.token=''"]
 # NETWORK
 EXPOSE 9000
